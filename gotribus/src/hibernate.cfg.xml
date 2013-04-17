@@ -1,0 +1,114 @@
+<?xml version='1.0' encoding='utf-8'?>
+<!DOCTYPE hibernate-configuration PUBLIC
+        "-//Hibernate/Hibernate Configuration DTD 3.0//EN"
+        "http://www.hibernate.org/dtd/hibernate-configuration-3.0.dtd">
+
+<hibernate-configuration>
+	<session-factory>
+		<!-- Database connection settings -->
+		<property name="connection.driver_class">com.mysql.jdbc.Driver</property>				
+		<property name="connection.url">jdbc:mysql://localhost:3306/tribus?characterEncoding=utf-8</property>
+		<property name="connection.username">root</property>
+		<property name="connection.password">root</property>						
+		
+		<!--
+		<property name="connection.url">jdbc:mysql://50.31.147.38:3306/tribus_tribus?characterEncoding=utf-8</property>		
+		<property name="connection.username">tribus_admin</property>
+		<property name="connection.password">fuzan19841022</property>
+		-->
+		
+		
+
+		<!-- JDBC connection pool (use the built-in) -->
+
+		<property name="hibernate.c3p0.acquire_increment">4</property>
+		<property name="hibernate.c3p0.max_size">8</property>
+		<property name="hibernate.c3p0.min_size">2</property>
+		<property name="hibernate.c3p0.timeout">120</property>
+		<property name="hibernate.c3p0.max_statements">100</property>
+		<property name="hibernate.c3p0.maxIdleTime">180</property>
+
+		<!-- SQL dialect -->
+		<property name="dialect">
+			org.hibernate.dialect.MySQLDialect
+	    </property>
+
+		<!-- Enable Hibernate's automatic session context management -->
+
+		<property name="hibernate.transaction.auto_close_session">true</property>
+		<property name="hibernate.transaction.flush_before_completion">false</property>
+		<property name="hibernate.connection.release_mode">after_statement</property>
+
+		<!-- Disable the second-level cache  -->
+		<property name="cache.provider_class">
+			org.hibernate.cache.NoCacheProvider
+     	</property>
+
+		<!-- Echo all executed SQL to stdout -->
+		<property name="show_sql">false</property>
+
+		<!-- Drop and re-create the database schema on startup -->
+		<!-- property name="hbm2ddl.auto">update</property-->
+		<property name="format_sql">true</property>
+		<property name="use_sql_comments">true</property>
+
+		<mapping class="model.User" />
+		<mapping class="model.UserProfile" />
+		<mapping class="model.Follow" />
+		<mapping class="model.Friend_speaking"/>
+		
+		<mapping class="model.Activity" />
+		<mapping class="model.ActivityAlbum" />
+		<mapping class="model.ActivityClassified" />
+		<mapping class="model.ActivityComment" />
+		<mapping class="model.ActivityPicComment" />
+		<mapping class="model.ActivityFollow" />
+		<mapping class="model.ActivityPic" />
+		<mapping class="model.ActivityGoing" />
+
+
+		<mapping class="model.Movie" />
+		<mapping class="model.Message" />
+		<mapping class="model.MovieComment" />
+		<mapping class="model.MovieTag" />
+		<mapping class="model.Starring" />
+		<mapping class="model.Company" />
+		<mapping class="model.Zodiac" />
+		<mapping class="model.StarType" />
+		<mapping class="model.MovieMark" />
+		<mapping class="model.MovieAlbum" />
+		<mapping class="model.MovieImage" />
+		<mapping class="model.MovieQuickComment" />
+		<mapping class="model.MovieCommentDraft" />
+	
+	
+		<mapping class="model.Book" />
+		<mapping class="model.BookComment" />
+		<mapping class="model.BookTag" />
+		<mapping class="model.BookDiary" />
+		<mapping class="model.BookMark" />
+		<mapping class="model.BookQuickComment" />
+		<mapping class="model.BookCommentDraft" />
+
+		<mapping class="model.Music" />
+		<mapping class="model.MusicType" />
+		<mapping class="model.Band" />
+		<mapping class="model.MusicVersion" />
+		<mapping class="model.MusicAudio" />
+		<mapping class="model.Singer" />
+		<mapping class="model.MusicComment" />
+		<mapping class="model.MusicMark" />
+		<mapping class="model.MusicTrack" />
+		<mapping class="model.MusicQuickComment" />
+		<mapping class="model.MusicCommentDraft" />
+		<mapping class="model.MusicTag" />
+
+		<mapping class="model.Invitation" />
+
+		<mapping class="model.MyTribusList" />
+		<mapping class="model.WishList" />
+		<mapping class="model.TribusClassify" />
+
+
+	</session-factory>
+</hibernate-configuration>

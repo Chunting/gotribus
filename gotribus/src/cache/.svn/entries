@@ -1,0 +1,40 @@
+8
+
+dir
+30
+svn://gotribus.com/tribus/src/cache
+svn://gotribus.com
+
+
+
+2012-06-03T08:03:36.635537Z
+7
+fu
+
+
+svn:special svn:externals svn:needs-lock
+
+CacheUtil.java
+file
+
+
+
+
+2012-05-13T08:17:43.265625Z
+bbaa3aa86f8063cc3980ff689a3ba5f2
+2012-06-03T08:03:36.635537Z
+7
+fu
+
+UserCache.java
+file
+
+
+
+
+2012-05-11T21:13:15.781250Z
+4c461fd71fd9ffadfe026479c9242d4d
+2012-06-03T08:03:36.635537Z
+7
+fu
+

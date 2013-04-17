@@ -1,0 +1,62 @@
+package config;
+
+public class GlobleConfig {
+
+//	
+    public static final String BASE_DOMAIN_NAME = "http:/localhost:8080/tribus/pic/";
+//	
+	public static final String BASE_PIC_PATH = "E:\\apache-tomcat-6.0.26\\webapps\\tribus\\pic\\";	
+//	
+	public static final String PIC_UPLOAD_LOCATION = "http://localhost:8080/view/pic/";
+//	
+	public static final String domainName = "localhost:8080";
+//	
+	public static final String DOMAIN_NAME = "localhost:8080";
+//	
+	public static final String localhost = "http://localhost:8080/tribus/view/";
+//	
+	
+	public static final String show_local = "http://localhost:8080/tribus/";	
+	
+	public static final String PIC_BACKUP = "E:\\findbugs\\pic\\";	
+	
+	//public static final String my_local = "/tribus_final/view";
+	
+	public static final String my_local = "http://localhost:8080/tribus/view";
+
+	public static final String my_domain = "http://localhost:8080/tribus";
+	
+
+	public static final String pathPath="../tribus/view/";
+
+	public static final String pathPath1="../tribus/";
+
+	
+	public static final String path_path = "";
+
+//	public static final String pathPath="../view/";
+
+//	public static final String pathPath1="../";
+		
+//	public static final String PIC_BACKUP = "/public_html/pic";
+//	
+//	public static final String pathPath="http://www.gotribus.com/view/";	
+//	
+//	public static final String BASE_DOMAIN_NAME = "http://www.gotribus.com/view/pic/";
+//	
+//	public static final String BASE_PIC_PATH = "/jvm/apache-tomcat-6.0.35/domains/gotribus.com/ROOT/view/pic/";	
+//	
+//	public static final String PIC_UPLOAD_LOCATION = "http://www.gotribus.com/view/pic/";
+//	
+//	public static final String domainName = "gotribus.com";
+//	
+//	public static final String DOMAIN_NAME = "gotribus.com";
+//	
+//	public static final String localhost = "http://gotribus.com/view/";
+//	
+//	public static final String my_local = "http://gotribus.com/view"; 
+//	
+//	public static final String show_local = "http://gotribus.com/";
+//	
+//	public static final String my_domain = "http://gotribus.com";
+}

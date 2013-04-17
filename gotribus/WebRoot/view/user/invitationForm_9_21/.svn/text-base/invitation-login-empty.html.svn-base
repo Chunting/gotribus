@@ -1,0 +1,64 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en">
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<title>welcomepage-invitation-login-empty</title>
+	<meta name="description" content="" />
+	<meta name="keywords" content="" />
+    <link rel="stylesheet" type="text/css" media="screen,projection" href="font/font.css" />
+    <link rel="stylesheet" type="text/css" media="screen,projection" href="css/style.css" />
+    <script type="text/javascript" src="js/jquery.min.js"></script>
+    <script type="text/javascript">
+	    $(document).ready(function() {
+			//根据当前浏览器的窗口大小调整中间白框的位置
+	    	var windowobj = $(window);
+	    	var browserwidth = windowobj.width();
+			var browserheight = windowobj.height();
+			//居中
+			$(".welcome_white_box").css("top",(browserheight - 540) / 2);
+			$(".welcome_white_box").css("left",(browserwidth - 400) / 2);
+		    
+			//点击小圆点或remember me表示选中
+	    	$(".remind_me").click(function() {
+	    			switch ($(this).find("a").attr("class")) {
+	    				case 'unselected':
+	    						$(this).find("a").attr("class","selected");
+	    						break;
+	    				case 'selected':
+	    						$(this).find("a").attr("class","unselected");
+	    						break;
+	    			}
+	    	});
+		});
+    </script>
+</head>
+
+<body class="welcome_bg">
+	<div class="welcome_white_box"><!--start welcome_white_box-->
+    	<form action="#">
+        	<div class="welcome_logo"><a href="#"><img src="img/logo_welcome.png" alt="" width="94" height="82" /></a></div>
+            <h2 class="title_welcome">Welcome to goTribus!</h2>
+            <p class="dot"></p>
+            <div class="user_account"><!--start user_account-->
+            	<p class="welcome_txt"><input class="email_input" type="text" value="email" onclick="if(this.value=='email')(this.value='')"  onblur="if(this.value=='')(this.value='email')" /></p>			
+				<div class="info_email">您的邮箱不存在</div>
+				<p class="welcome_txt2"><input class="pwd_input" type="text" value="password" onclick="if(this.value=='password')(this.value='')"  onblur="if(this.value=='')(this.value='password')" /></p>			
+				<div class="enter"><a href="#">ENTER</a></div>
+				<div class="info_pwd">密码不正确</div>
+                <span class="remind_me"><a href="#" class="unselected">Remember Me</a></span>
+                <span class="forgot"><a href="#">Forgot your password?</a></span>
+               	<p class="log_fb"><a href="#"><img src="img/log_with_fb.png" alt="" width="176" height="41" /></a></p>            
+            </div><!--//end .user_account-->
+            <p class="dot"></p>
+            <div class="user_account"><!--start user_account-->
+            	<p class="welcome_txt"><input class="email_input" type="text" value="email" onclick="if(this.value=='email')(this.value='')"  onblur="if(this.value=='')(this.value='email')" /></p>			
+				<div class="info_email">您输入的邮箱已经存在</div>
+				<p class="welcome_txt2"><input class="pwd_input" type="text" value="password" onclick="if(this.value=='password')(this.value='')"  onblur="if(this.value=='')(this.value='password')" /></p>
+				<div class="enter"><a href="#">JOIN</a></div>  
+            	<div class="info_pwd">密码请大于6位</div>
+            </div><!--//end .user_account-->   
+            <p class="copyright">Copyright @ Tribus.us 2012. 　All rights reserved</p>
+        </form>
+    </div><!--//end #welcome_white_box-->
+</body>
+</html>                                                                                                   

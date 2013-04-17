@@ -1,0 +1,165 @@
+package controller;
+
+import hibernate.TribusHibernateSessionFactory;
+
+import java.util.*;
+
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
+
+import org.hibernate.Session;
+import org.hibernate.Transaction;
+import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.servlet.ModelAndView;
+
+import util.TribusObjectMapping;
+import vo.MessageVO;
+
+import dao.MessageDao;
+import dao.UserDao;
+import model.Activity;
+import model.Message;
+import model.User;
+import dao.UserProfileDao;
+import model.UserProfile;
+
+
+@Controller
+@RequestMapping("userMail")
+public class TribusMailController {
+	
+	
+	@RequestMapping("sendMailForm")
+	public String sendMail(){
+		return "user/sendMail";		
+	}
+	
+	
+	
+	@RequestMapping("deleteMailAction/{ids}")
+	public String deleteMail(HttpServletRequest request, HttpServletResponse res,
+			@PathVariable("ids")
+			String ids
+	){
+			
+		if( ids == null || ids.split(",").length == 0 ){
+			return "redirect:my.action";
+		}
+		
+		String[] id = ids.split(",");
+		int[] id_arr = new int[id.length]; 
+		for (int i = 0; i < id_arr.length; i++) {
+			id_arr[i] = Integer.parseInt(id[i]);
+		}		
+		
+		MessageDao md = new MessageDao();
+		int i = md.deleteByIds(id_arr);
+		if( i  ==  1 ){
+			
+		}
+		
+		
+		return "redirect: user/box//1/0";
+	}
+	
+	
+	
+	
+	@RequestMapping("sendMailAction")
+	public String sendMailAction(HttpServletRequest request, HttpServletResponse res){
+							
+		HttpSession se = request.getSession();
+		User u = (User)se.getAttribute("user");
+		UserDao ud = new UserDao();
+		String email = request.getParameter("messageToUserEmail");
+		User mailToUser = new User();
+		mailToUser.setUserEmail(email);
+		User new_mailToUser = ud.getUserByCondition(mailToUser);		
+		
+		MessageDao md = new MessageDao();
+		Message mess = (Message)TribusObjectMapping.convert("model.Message", request, res);
+		if(new_mailToUser != null){
+			mess.setMessageToUserId(new_mailToUser.getUserId());		
+			//mess.setRead(false);
+			mess.setMessageRead(false);
+			mess.setMessageDate(new Date());
+			md.add(mess);			
+		}				
+//		else{
+//			return "";
+//		}				
+		return "redirect:user/box/"+u.getUserId()+"/1/0.action";
+	}
+	
+	
+		/**
+		 * 1 means inbox, 0 means outbox
+		 * @param request
+		 * @param res
+		 * @param id
+		 * @param typeId
+		 * @param page
+		 * @return
+		 */
+	 @RequestMapping("box/{inOrout}/{page}")
+	    public ModelAndView emailList(	    			    		
+	    		HttpServletRequest request, HttpServletResponse res,	    		
+	    		@PathVariable("inOrout") int typeId,
+	    		@PathVariable("page") int page
+	    ){
+		 
+		 
+		 	ModelAndView mv = new ModelAndView();
+		 	MessageDao md = new MessageDao();
+		 	UserProfileDao upd = new UserProfileDao();		 			 	
+		 	
+		 	HttpSession se = request.getSession();
+	    	User user = (User)se.getAttribute("user");			 
+		 	if( user!= null){
+		 		int id = user.getUserId();
+		 		List<MessageVO> inboxAllmails = md.getUserInboxMessageAll(id);
+			 	List<MessageVO> outboxAllmails = md.getUserOutboxMessageAll(id);
+			 	List<MessageVO> unreadInboxmails = md.getUserInboxMessageUnRead(id);
+			 	
+			 	
+			 	UserProfile uf = new UserProfile();			 				 	
+			 	uf = upd.getUserProfileById(id);
+			 		
+			 			 	
+			 //	mv.addObject("nameAndId", m);
+			 	mv.addObject("inbox", inboxAllmails);
+			 	mv.addObject("outbox", outboxAllmails);
+			 	mv.addObject("user", user);
+			 	mv.addObject("userProf", uf);
+			 	mv.addObject("unreadNum", unreadInboxmails.size());
+			 	mv.addObject("reminder", unreadInboxmails != null ? unreadInboxmails.size():0 );
+			 	
+			 	if(typeId == 1){//inbox
+			 		mv.addObject("inOrOutflag", true); // true means inbox
+			 	}else{
+			 		mv.addObject("inOrOutflag", false); // true means outbox
+			 	}
+			 	 
+			 	mv.setViewName("user/mail");
+			 	return mv;
+		 	}
+		 	return null;
+	    }
+	 	
+	 
+	 @RequestMapping("readMail/{id}")
+	 public ModelAndView readMessage(
+			 HttpServletRequest request, HttpServletResponse res,
+			 @PathVariable("id")
+			 int id
+	 ){
+		 MessageDao md = new MessageDao();
+		 Message m = md.getMessageById(id);
+		 m.setMessageRead(true);
+		 return null;
+	 }
+	 
+}

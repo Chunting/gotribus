@@ -1,0 +1,337 @@
+8
+
+dir
+487
+svn://gotribus.com/tribus/WebRoot/view/movie
+svn://gotribus.com
+
+
+
+2012-08-19T15:43:35.832685Z
+485
+chendao
+
+
+svn:special svn:externals svn:needs-lock
+
+
+
+
+
+
+
+
+
+
+
+c7406c4e-723a-4a60-bb16-f111084c86c4
+
+Personal_setting.html
+file
+
+
+
+
+2012-08-14T01:31:27.578125Z
+bab41d8226fd7ae1b7c752a7247e96ff
+2012-06-09T06:36:17.252714Z
+82
+chendao
+
+Movie_Final.jsp
+file
+
+
+
+
+2012-08-19T03:28:53.437500Z
+9f7675d8cb2ddafb88b40eca41cd577c
+2012-08-19T15:43:35.832685Z
+485
+chendao
+
+style.css
+file
+
+
+
+
+2012-08-19T03:28:53.500000Z
+4eb9c59e8b5a6455c6da40a9b9b54976
+2012-08-19T15:43:35.832685Z
+485
+chendao
+
+Search_Movie_Result_list.jsp
+file
+
+
+
+
+2012-08-19T03:28:53.593750Z
+ea9d3cda8320645f9d16ffdb3c097c45
+2012-08-19T15:43:35.832685Z
+485
+chendao
+
+create_a_comment.html
+file
+
+
+
+
+2012-08-14T01:31:27.734375Z
+1c71be2819247f3eeef05562bf01599a
+2012-06-03T19:16:11.457762Z
+19
+chendao
+
+Review_page.jsp
+file
+
+
+
+
+2012-08-19T03:28:53.578125Z
+8380b198fc202e4dbbda23a43a78d3d5
+2012-08-19T15:43:35.832685Z
+485
+chendao
+
+MovieHomePage.html
+file
+
+
+
+
+2012-08-14T01:31:27.812500Z
+492d6696f40ec94ada0c3654cadfb5ac
+2012-06-03T07:49:48.790112Z
+5
+fu
+
+mark
+dir
+
+Movie_Final.html
+file
+
+
+
+
+2012-08-14T01:31:27.843750Z
+2b085f41a56753cd4643c100bd4fa01e
+2012-06-03T07:49:48.790112Z
+5
+fu
+
+Search_Movie_Result_movie.jsp
+file
+
+
+
+
+2012-08-19T03:28:53.625000Z
+12114f3d1fd08f6e7e2ea15124f0d744
+2012-08-19T15:43:35.832685Z
+485
+chendao
+
+Upload_pics.jsp
+file
+
+
+
+
+2012-08-14T01:31:27.906250Z
+ae1a441024f761a67c5b1b7be4bbb933
+2012-06-30T07:35:32.750276Z
+358
+chendao
+
+Review_page_by_id.jsp
+file
+
+
+
+
+2012-08-19T03:28:53.640625Z
+c1c6e6c902d61026d8f5125d5fb5f95e
+2012-08-19T15:43:35.832685Z
+485
+chendao
+
+images
+dir
+
+search
+dir
+
+includes
+dir
+
+Search_Movie_Result_celebrities.jsp
+file
+
+
+
+
+2012-08-19T03:28:53.671875Z
+53f23def59d8f5f4ded2ed9bfced4cba
+2012-08-19T15:43:35.832685Z
+485
+chendao
+
+singleMoviePage.jsp
+file
+
+
+
+
+2012-08-19T03:28:53.687500Z
+cc844490e0de884adae84eafede37a66
+2012-08-19T15:43:35.832685Z
+485
+chendao
+
+js
+dir
+
+img
+dir
+
+edit_movie.jsp
+file
+
+
+
+
+2012-08-19T03:28:53.718750Z
+a371cc7ce0bc348f8cf8c5ec902c2471
+2012-08-19T15:43:35.832685Z
+485
+chendao
+
+create_a_comment.jsp
+file
+
+
+
+
+2012-08-19T03:28:53.718750Z
+4b65d536b13d7b4e98d9b9b6cd388ffd
+2012-08-19T15:43:35.832685Z
+485
+chendao
+
+MovieHomePage.jsp
+file
+
+
+
+
+2012-08-14T01:31:28.234375Z
+784857a217c8b54fa4b137d40016f73d
+2012-06-03T07:49:48.790112Z
+5
+fu
+
+edit
+dir
+
+css
+dir
+
+add
+dir
+
+king_speech_Final.html
+file
+
+
+
+
+2012-08-14T01:31:28.296875Z
+cfd29613efe506fd443ac764579b871a
+2012-06-03T07:49:48.790112Z
+5
+fu
+
+Single_review.jsp
+file
+
+
+
+
+2012-08-19T03:28:53.765625Z
+54e28abd37c37232f7b84b8be13ffc0e
+2012-08-19T15:43:35.832685Z
+485
+chendao
+
+create_movie.jsp
+file
+
+
+
+
+2012-08-19T03:28:53.796875Z
+74f65621c6c2f2837f8479c816e63b10
+2012-08-19T15:43:35.832685Z
+485
+chendao
+
+Review_page.html
+file
+
+
+
+
+2012-08-14T01:31:28.453125Z
+a694fa9ec6abafe55be07d97e6e65ea6
+2012-06-03T07:49:48.790112Z
+5
+fu
+
+comment
+dir
+
+success.jsp
+file
+
+
+
+
+2012-08-14T01:31:28.484375Z
+5b4a53421ec1cf38997ab04cd64b22ba
+2012-06-03T07:49:48.790112Z
+5
+fu
+
+font
+dir
+
+test.jsp
+file
+
+
+
+
+2012-08-14T01:31:28.531250Z
+baf0667152bb2e450da4a7246947018c
+2012-06-03T07:49:48.790112Z
+5
+fu
+
+StarHomePage.jsp
+file
+
+
+
+
+2012-08-14T01:31:28.578125Z
+79f645903be787296ff29d50fdeee4ac
+2012-06-03T07:49:48.790112Z
+5
+fu
+

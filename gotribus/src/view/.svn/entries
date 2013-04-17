@@ -1,0 +1,16 @@
+8
+
+dir
+30
+svn://gotribus.com/tribus/src/view
+svn://gotribus.com
+
+
+
+2012-06-03T08:03:36.635537Z
+7
+fu
+
+
+svn:special svn:externals svn:needs-lock
+

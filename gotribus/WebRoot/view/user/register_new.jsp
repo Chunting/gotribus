@@ -1,0 +1,107 @@
+<%@ page language="java" import="java.util.*" pageEncoding="utf-8"%><%@ taglib uri="/WEB-INF/tld/c-rt.tld" prefix="c" %><%
+%><%@ page import="config.GlobleConfig" %>
+<%
+	request.setAttribute("domain",GlobleConfig.localhost);
+	request.setAttribute("no_view_url",GlobleConfig.show_local);
+ %><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en">
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<title>Welcome to Gotribus,this is a place have fun !</title>
+	<meta name="description" content="" />
+	<meta name="keywords" content="" />
+    <link rel="stylesheet" type="text/css" media="screen,projection" href="${domain}user/font/font.css" />
+    <link rel="stylesheet" type="text/css" media="screen,projection" href="${domain}user/css/style.css" />
+    <script type="text/javascript" src="${domain}js/jquery-1.6.2.min.js"></script>
+    <script type="text/javascript" src="${domain}js/md5.js"></script>
+    
+    <script type="text/javascript">
+    	var i = 0;
+    	function check(){		   
+		   $("input").each(
+	   		function(){
+				i++;			
+				if((this.required == true || this.required == "true") && $.trim(this.value) == ""){
+					i = 0;
+					alert("please fill in a proper "+this.name+" ^_^");
+					return false;
+				}
+				if(this.name == "userEmail" && !IsEmail(this.value)){
+	  				i=0;
+					alert("please fill in a proper email ^_^");
+					return false;
+				}
+				if( (this.isNumber == true || this.isNumber == "true") && !$.isNumeric(this.value)){
+                    i=0;
+					alert("please fill in a proper number ^_^");		
+					return false;
+				}
+				//alert(MD5(this.value));
+				if(this.name == "userPw"){ this.value = MD5(this.value);}
+				if(this.name == "userPw2" && MD5(this.value) != $("input[name=userPw]").val() ){
+					i = 0;
+					alert("two passwords not the same !");
+					return false;
+				}
+			});								
+				if(i>=4){$("form").submit();}
+    	}
+    	
+    	function IsEmail(email) {
+		  var regex = /^([a-zA-Z0-9_\.\-\+])+\@(([a-zA-Z0-9\-])+\.)+([a-zA-Z]{2,4})+$/;
+		  return regex.test(email);
+		}
+		
+    	$(document).ready(function(){	
+				$("input[name=userPw],input[name=userPw2]").focus( function() {
+					this.value = "";
+					this.type = "password";
+				});														   																	
+		});
+    
+    </script>
+    
+</head>
+
+<body class="welcome_bg">
+	<div class="welcome_white_box spacing_sinup"><!--start welcome_white_box-->
+    	<form action="registerAction.action" method="post">
+        	<div class="welcome_logo"><a href="#">
+        	<img src="${domain}user/img/logo_welcome.jpg" alt="" width="94" height="82" /></a></div>
+        	
+        	<h2 class="title_welcome">Let's to goTribus</h2>
+        	
+            <div class="user_account"><!--start user_account-->
+            
+            	<p class="welcome_txt">            	
+            	<input type="text" value="${i_email}" email="true" required="true" name="userEmail"  onclick="if(this.value=='${i_email}')(this.value='')"  onblur="if(this.value=='')(this.value='${i_email}')" />            	
+            	</p>
+            	
+            				
+                <p class="welcome_txt">
+                <input type="text" value="username"  required="true" name="userAlias" onclick="if(this.value=='username')(this.value='')"  onblur="if(this.value=='')(this.value='username')" />
+                </p>
+                                                
+                <p class="welcome_txt">
+                <input type="text" value="password"  required="true" name="userPw"  onclick="if(this.value=='password')(this.value='')"  onblur="if(this.value=='')(this.value='password')" />
+                </p>
+                			
+                <p class="welcome_txt">
+                	<input type="text" value="confirm password"  required="true" name="userPw2" onclick="if(this.value=='confirm password')(this.value='')"  onblur="if(this.value=='')(this.value='confirm password')" />
+                </p>                
+                <div class="enter"><a href="javascript: check();">join &gt;&gt;</a></div>
+            </div><!--//end .user_account-->
+            <div class="sign_up_option">
+            	<span>Or sign up with: </span>
+                <div class="icon_social">
+                	<a href="https://www.facebook.com/TheTribus"><img src="${domain }user/img/icon_facebook_welcome.jpg" width="30" height="30" alt="" /></a>
+                    <a href="#"><img src="${domain }user/img/icon_tweet_welcome.jpg" width="29" height="30" alt="" /></a>
+                </div>
+            </div>
+		        <c:if test="${!empty message}">
+            		<div class="error space_error"><span>!!! ${message}</span></div>
+            	</c:if>
+        </form>
+    </div><!--//end #welcome_white_box-->
+</body>
+</html>                                                                                                   

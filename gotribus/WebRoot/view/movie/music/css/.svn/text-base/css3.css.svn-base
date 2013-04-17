@@ -1,0 +1,8 @@
+.comment_box,
+.tribus_common_box,
+.mid_white_box {
+	-webkit-border-radius: 7px;
+	-moz-border-radius: 7px;
+	border-radius: 7px;
+    behavior:url(PIE.htc);
+}

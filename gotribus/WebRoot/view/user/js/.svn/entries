@@ -1,0 +1,52 @@
+8
+
+dir
+246
+svn://gotribus.com/tribus/WebRoot/view/user/js
+svn://gotribus.com
+
+
+
+2012-06-10T21:05:30.398466Z
+110
+fu
+
+
+svn:special svn:externals svn:needs-lock
+
+
+
+
+
+
+
+
+
+
+
+c7406c4e-723a-4a60-bb16-f111084c86c4
+
+smoothscroll.js
+file
+
+
+
+
+2012-06-16T20:24:07.890625Z
+21bbbd11f4758ca35c8cd3849bad4b4f
+2012-06-10T21:05:30.398466Z
+110
+fu
+
+easy-editable-text.js
+file
+
+
+
+
+2012-06-16T20:24:07.906250Z
+96b0e7ec39f337d4b9325cdc654527b0
+2012-06-10T21:05:30.398466Z
+110
+fu
+

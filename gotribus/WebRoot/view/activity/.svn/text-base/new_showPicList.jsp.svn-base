@@ -1,0 +1,189 @@
+<%@ page language="java"
+	import="java.util.*,model.User,model.Activity,model.ActivityClassified,vo.ActivityGoingMax,vo.UserComment,config.GlobleConfig"
+	pageEncoding="utf-8"%><%@ taglib uri="/WEB-INF/tld/c-rt.tld" prefix="c"%><%
+	request.setAttribute("path2",GlobleConfig.pathPath1);
+	request.setAttribute("path1",GlobleConfig.pathPath);
+	User user=(User)request.getAttribute("user");
+	%><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en">
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<title>Tribus_Album</title>
+	<meta name="description" content="" />
+	<meta name="keywords" content="" />
+	<link rel="stylesheet" type="text/css" media="screen,projection"
+			href="${path1}activity/font/font.css" />
+	<link rel="stylesheet" type="text/css" media="screen,projection"
+			href="${path1}activity/css/style.css" />
+    <script type="text/javascript" src="${path1}js/jquery-1.6.2.min.js"></script>
+    <script type="text/javascript">
+     function submit(){
+  resourceId=${activityId};
+  typeId=document.getElementById("tribusClassify").value;
+   document.form10.action="${path2}/user/addTribusList/city/"+typeId+"/"+rescourceId;
+ document.form10.submit();
+  closePop();
+  }
+    </script>
+</head>
+
+<body>
+	<div id="wrapper"><!--start wrapper-->
+    	<div id="header"><!--start header-->
+        	<div class="logo"><a name="top" href="${path2 }activity/index.action"><img src="${path1}activity/img/logo.png" alt="" width="59" height="65" /></a></div>
+            <div id="header_rgt"><!--start header_rgt-->
+            	<div id="menu_bg"><div id="menu_lft"><div id="menu_rgt">
+                    <ul>
+                    	<li class="current_page_item">
+										<a href="${path2}activity/index.action">CITY</a>
+									</li>
+									<li>
+										<a href="${path2}movie/movieHomePage.action" title="MOVIE">MOVIE</a>
+									</li>
+									<li>
+										<a href="${path2}book/bookHomePage.action" title="BOOK">BOOK</a>
+									</li>
+									<li>
+										<a href="${path2}music/musicHomePage.action" title="MUSIC">MUSIC</a>
+									</li>
+									<li>
+										<a href="${path2}user/my.action" title="${path2}user/my.action">MY TRIBUS</a>
+									</li>
+                    </ul>
+                    <div class="header_search">
+                    	<form action="${path2}user/searchAll.action">
+                        	<p class="txt_header"><input id="search" name="search" type="text" /></p>
+                            <p class="submit_header"><input type="submit" value=" " /></p>
+                        </form>
+                    </div>
+                    <div class="header_icon_area">
+                    	<span class="space_btm"><a href="#"><img src="${path1 }activity/img/icon_header1.png" alt="" width="10" height="11" /></a></span>
+                        <span><a href="${path2 }user/editForm.action"><img src="${path1 }activity/img/icon_header2.png" alt="" width="12" height="13" /></a></span>
+                    </div>
+                </div></div></div>
+            </div><!--//end #header_rgt-->
+        </div><!--//end #header-->
+        <div id="main_area"><!--start main_area-->
+        	<div id="saerch_area"><!--start saerch_area-->
+            	<div id="search_bg" class="space_lft"><!--start search_bg-->
+                	<form action="${path2}activity/search.action">
+                    	<p class="search_text"><input id="searchCondition" name="searchCondition" type="text" value="Seach activity, activity time, activity location" onclick="if(this.value=='Seach activity, activity time, activity location')(this.value='')"  onblur="if(this.value=='')(this.value='Seach activity, activity time, activity location')" /></p>
+                        <p class="search_submit"><input type="submit" value=" " /></p>
+                    </form>
+                </div><!--//end #search_bg-->
+                <div id="social_media"><!--start social_media-->
+                	<div id="social_lftcol">
+                    	
+                    </div>
+                    <div id="social_box"><!--start social_box-->
+                    	<div id="message">
+                        	<a href="#"><img src="${path1}activity/img/icon_message1.jpg" alt="" /><c:if test="${unreadMail > 0}">
+								<span>${unreadMail}</span>
+							</c:if></a>
+                            <a href="#"><img src="${path1}activity/img/icon_message2.jpg" alt="" /></a>
+                            <a href="#"><img src="${path1}activity/img/icon_message3.jpg" alt="" /></a>
+                            <a href="#"><img src="${path1}activity/img/icon_message4.jpg" alt="" /></a>
+                        </div>
+                        <div class="address">
+                        	<h3><%if(user!=null){ %><a href="user/my.action"><%=user.getUserAlias()%></a><%}else{ %><a href="user/login.action">login</a><%} %></h3>
+                            <span>${userProf.profCity}</span>
+                        </div>
+                    </div><!--//end #social_box-->
+                </div><!--//end #social_media-->
+            </div><!--//end #saerch_area-->
+            <div id="common_maincontent"><!--start common_maincontent-->
+            	<div id="album_content"><!--start album_content-->
+                	<div id="album_type">
+                    	<ul>
+                        	<li class="album"></li>  
+                           
+                            <li><c:choose><c:when test="${flag==1}"><a href="${path2}activity/addPicIndex.action?activityId=${activityId}">Upload New Picture</a></c:when></c:choose></li>
+                        </ul>
+                    </div>
+                    <div id="gallery"><!--start gallery-->
+                    	<h2>${activityAlbum.albumName }</h2>
+                        <div id="album_img">
+                            <c:forEach items="${activityPics}" var="item">
+                            <a href="${path2}activity/showPic.action?activityPicId=${item.picId}&albumName=${activityAlbum.albumName}&activityId=${activityId}"><img src="${item.picPath}" alt="" width="192" height="192"/></a>
+</c:forEach>
+                        </div>
+                        <div id="slbum_descript">
+                        	<p>${activityAlbum.albumDescription }</p>
+                        </div>
+                        <div id="album_pagination_area">
+                        	<div id="album_pagi">
+                            	<a href="#" class="prev"></a>
+                                 <c:forEach items="${pageNumbers}" var="item">  
+             <a href="${path2}activity/showPicList.action?page=${item}&albumId=${activityAlbum.albumId}">
+             ${item}
+             </a>&nbsp
+            </c:forEach>
+                                <a href="#" class="next"></a>
+                            </div>
+                            <div id="album_social">
+                            	<div id='fb-root'></div>
+    <script src='http://connect.facebook.net/en_US/all.js'></script>
+    <a onclick='postToFeed(); return false;'><img src="${path1}activity/img/icon_facebook.jpg" alt="" /></a>
+                                <a href="#"><img src="${path1}activity/img/icon_tweet.jpg" alt="" /></a>
+                               <p id='msg'></p>
+                                <script> 
+      FB.init({appId: "167819743335514", status: true, cookie: true});
+
+      function postToFeed() {
+
+        // calling the API ...
+        var obj = {
+          method: 'feed',
+          link: 'https://developers.facebook.com/docs/reference/dialogs/',
+          picture: 'http://fbrell.com/f8.jpg',
+          name: 'Facebook Dialogs',
+          caption: 'Reference Documentation',
+          description: 'Using Dialogs to interact with users.'
+        };
+
+        function callback(response) {
+          document.getElementById('msg').innerHTML = "Post ID: " + response['post_id'];
+        }
+
+        FB.ui(obj, callback);
+      }
+    
+    </script> 
+                                <span><a href="${path2}addWishList/city/${activityInfo.activityId}.action">+Wish List</a></span>
+                                <span><a href="javascript:void(0)" onClick="showPop()">+Tribus List</a></span>
+                                <small><a href="#"><img src="${path1 }activity/img/icon_album.jpg" alt="" width="20" height="19" /></a></small>
+                            </div>
+                        </div>
+                    </div><!--//end #gallery-->
+                </div><!--//end #album_content-->
+            </div><!--//end #common_maincontent-->
+            <div id="footer"><p>Copyright @ Tribus.us 2012.      <span>All rights reserved</span> </p></div>
+            <div id="back_to_top"><a href="#top"></a></div>
+        </div><!--//end #main_area-->
+    </div><!--//end #wrapper-->
+    
+    <div id="popup_layer" onClick="closePop()"></div>   
+    <div id="light_box_wrapper"><!--start light_box_wrapper-->
+    	<div id="light_box_bg"><!--start light_box_bg-->
+        	<div class="pop_up_cross"> <a href="javascript:void(0)" onClick="closePop()"></a></div>
+        	<h2>Add to list</h2>
+            <form id="form10" name="form10" action="" method="post">
+            	<p>
+                	 <select id="tribusClassify" name="tribusClassify" >	
+                    <c:forEach items="${tribusClassify}" var="item">
+                        <option value="${item.id}">${item.name}</option>
+                      </c:forEach>
+                    </select>
+                </p>
+                <p><textarea rows="10" cols="10" onclick="if(this.value=='Description...')(this.value='')" onblur="if(this.value=='')(this.value='Description...')" >Description...</textarea></p>
+                <div class="pop_btn"><a href="javascript:void(0)" onClick="submit()">Add</a></div>
+            </form>
+        </div><!--//end #light_box_bg-->
+    </div><!--//end #light_box_wrapper-->
+	<script type="text/javascript" src="${path1 }activity/css/js/jquery.min.js"></script>
+    <script src="${path1 }activity/css/js/smoothscroll.js" type="text/javascript"></script>
+    <script type="text/javascript" src="${path1 }activity/css/js/code.js"></script>
+
+
+</body>
+</html>                                                                                                   

@@ -1,0 +1,88 @@
+8
+
+dir
+667
+svn://gotribus.com/tribus/src
+svn://gotribus.com
+
+
+
+2012-06-03T20:14:21.612491Z
+30
+chendao
+
+
+svn:special svn:externals svn:needs-lock
+
+
+
+
+
+
+
+
+
+
+incomplete
+c7406c4e-723a-4a60-bb16-f111084c86c4
+
+test
+dir
+
+model
+dir
+
+hibernate
+dir
+
+cache
+dir
+
+controller
+dir
+
+dao
+dir
+
+vo
+dir
+
+config
+dir
+
+filter
+dir
+
+listener
+dir
+
+log4j.properties
+file
+30
+
+
+
+2012-05-19T22:11:22.671875Z
+3b08f7762f51da419f03f54a3ef58757
+2012-06-03T08:03:36.635537Z
+7
+fu
+
+view
+dir
+
+util
+dir
+
+hibernate.cfg.xml
+file
+284
+
+
+
+2012-06-21T18:22:30.296875Z
+c560ea7079639f73a121d4ab89128cba
+2012-06-22T18:23:06.422946Z
+284
+fu
+

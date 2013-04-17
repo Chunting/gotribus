@@ -1,0 +1,186 @@
+package controller;
+
+import java.text.ParseException;
+import java.util.List;
+
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
+
+import model.MyTribusList;
+import model.TribusClassify;
+import model.User;
+import model.UserProfile;
+
+import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.servlet.ModelAndView;
+
+import util.TribusObjectMapping;
+import vo.MessageVO;
+import dao.MessageDao;
+import dao.TribusListClassifyDao;
+import dao.TribusListDao;
+
+@Controller
+@RequestMapping("tribuslist")
+public class TribusListController {
+
+	private TribusListClassifyDao tcDao = new TribusListClassifyDao();
+	private TribusListDao tld = new TribusListDao();
+	private MessageDao messageDao = new MessageDao();
+		
+	
+	@RequestMapping("edtiClassList/{id}")
+	public ModelAndView editTribusList(HttpServletRequest req,
+			HttpServletResponse res,
+			@PathVariable("id")int id
+	){
+		ModelAndView mv = new ModelAndView("user/creat_my_own_tribus_list");
+		User u = getUser(req,res);
+		UserProfile up = getUserProfile(req,res);
+		
+		//***********************************************************************
+		TribusClassify tc = (TribusClassify)TribusObjectMapping.convert("model.TribusClassify", req, res);		
+		TribusClassify tc_old = tcDao.getTribusListClassById(id);
+    	
+    	TribusObjectMapping.objectCopy(tc_old, tc, new String[]{"id"});    	    	    
+		//***********************************************************************
+    	List<MessageVO> unreadInboxmails  = null;
+    	List<TribusClassify> l = tcDao.getTribusListClassByUserId(u.getUserId());	
+    	
+    	try {
+  			unreadInboxmails = messageDao.getUserInboxMessageAllUnread(u.getUserId());
+  		} catch (ParseException e) {	  			
+  			e.printStackTrace();
+  		}
+  		
+  		mv.addObject("unreadMail", unreadInboxmails !=null ? unreadInboxmails.size(): 0);
+		mv.addObject("userPro", up);    	
+    	mv.addObject("user", u);
+		mv.addObject("list", l);
+		
+		if(tcDao.update(tc_old) == 1){
+    		return mv;	
+    	}
+		
+		return null;
+	}
+	
+	
+	@RequestMapping("add")
+	public ModelAndView addTribusList(
+			HttpServletRequest req,
+			HttpServletResponse res		
+	){
+		ModelAndView mv = new ModelAndView("user/creat_my_own_tribus_list");
+		User u = getUser(req,res);
+		UserProfile up = getUserProfile(req,res);
+		TribusClassify tc = (TribusClassify)TribusObjectMapping.convert("model.TribusClassify", req, res);		
+		tc.setUserId(u.getUserId());
+								
+		if(tc.getName()!=null){
+			if(tcDao.save(tc) == 1){
+				mv.addObject("message", "ok");
+			}else{
+				mv.addObject("message", "fail");
+			}	
+		}	
+		List<TribusClassify> l = tcDao.getTribusListClassByUserId(u.getUserId());		
+		List<MessageVO> unreadInboxmails  = null;
+		
+  		try {
+  			unreadInboxmails = messageDao.getUserInboxMessageAllUnread(u.getUserId());
+  		} catch (ParseException e) {	  			
+  			e.printStackTrace();
+  		}
+  		
+  		mv.addObject("unreadMail", unreadInboxmails !=null ? unreadInboxmails.size(): 0);
+		mv.addObject("userPro", up);    	
+    	mv.addObject("user", u);
+		mv.addObject("list", l);
+		return mv;		
+	}
+	
+	
+	@RequestMapping("delete")
+	public String deleteTribusList(){
+		
+		
+		String[] ids = null;
+		/**
+		 *  
+		 *  
+		 *  dao.deleteByIds(ids);
+		 *  
+		 *  
+		 */
+		
+		return null;
+	}
+	
+	
+	
+	/**
+	@RequestMapping("list")
+	public String selectTribusList(){
+							
+		
+		TribusListClassifyDao td = new TribusListClassifyDao();
+		
+		List l_book = null;// book
+		
+		List l_movie = null;// movie
+		
+		List l_music = null; // music
+								
+		return null;
+	}
+	**/
+	
+	@RequestMapping("list/{id}")
+	public ModelAndView tribusList(
+			@PathVariable("id")
+			int id,
+			HttpServletRequest req,
+			HttpServletResponse res
+	){
+		
+		//0:movie, 1:music, 2:book, 3:city		
+		List<TribusClassify> l_all = tcDao.getTribusListClassByUserId(id);		
+		ModelAndView mv = new ModelAndView();		
+		mv.addObject("list", l_all);				
+		mv.setViewName("user/tribuslistClass");
+		return mv;
+	}
+	
+	@RequestMapping("classlist/{id}")
+	public ModelAndView selectTribusListClass(
+			HttpServletRequest req, HttpServletResponse res,			
+			@PathVariable("id")		
+			int id
+	){
+		ModelAndView mv = new ModelAndView();		
+		List<MyTribusList> l = tld.getTribusListByClassId(id);
+		mv.addObject("list", l);
+		mv.setViewName("user/tribusResourseList");
+		return mv;
+	}
+	
+	
+	private User getUser(
+    		HttpServletRequest req,HttpServletResponse res
+    ){
+    	HttpSession session = req.getSession();
+    	User u = session.getAttribute("user") == null ? null : (User)session.getAttribute("user");	    		    	
+    	return u;
+    }
+    
+    private UserProfile getUserProfile(HttpServletRequest req,HttpServletResponse res){
+    	HttpSession session = req.getSession();
+    	UserProfile up = session.getAttribute("userProf") == null ? null : (UserProfile)session.getAttribute("userProf");	    		    	
+    	return up;
+    }	
+}
+
